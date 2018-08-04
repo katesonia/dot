@@ -212,7 +212,7 @@ contract FunToken is ERC20Interface, Owned {
     // ------------------------------------------------------------------------
     // 1,000 Fun Tokens per 1 ETH
     // ------------------------------------------------------------------------
-    function () public payable {
+    function buyTokens() public payable {
         require(now >= startDate && now <= endDate);
         uint tokens;
         if (now <= bonusEnds) {
@@ -226,7 +226,10 @@ contract FunToken is ERC20Interface, Owned {
         owner.transfer(msg.value);
     }
 
-
+    // Fallback
+    function () public payable {
+        buyTokens();
+    }
 
     // ------------------------------------------------------------------------
     // Owner can transfer out any accidentally sent ERC20 tokens
