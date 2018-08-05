@@ -3,8 +3,7 @@ pragma solidity ^0.4.18;
 library CommonStruct {
     
     struct Accomplishment {
-    	address member;
-    	uint token_rewarded;
+    	uint tokenRewarded;
     	string message;
     	//uint timestamp;
     }
