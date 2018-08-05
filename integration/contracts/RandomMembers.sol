@@ -12,7 +12,7 @@ contract RandomMembers {
 	
 	uint public counter = 0;
 	string[] names = ["Shuangling", "Henry", "Sharu", "Jessy", "Eve", "Jing"];
-	bool[] isBoards = [false, false, true, true, false, false];
+	bool[] isBoards = [true, false, true, true, false, false];
 
     mapping(address => Member) public memberInfo;
     
