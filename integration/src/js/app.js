@@ -5,8 +5,8 @@ App = {
   init: function() {
     console.log('init');
     $.getJSON('../members.json', function(data) {
-      App.setTokenAmount(data.balance);
-      App.setName(data.name);
+      // App.setTokenAmount(data.balance);
+      // App.setName(data.name);
     });
 
     return App.initWeb3();
@@ -26,19 +26,6 @@ App = {
   },
 
   initContract: function() {
-    $.getJSON('DotToken.json', function(data) {
-      // Get the necessary contract artifact file and instantiate it with truffle-contract
-      var DotTokenArtifact = data;
-      App.contracts.DotToken = TruffleContract(DotTokenArtifact);
-
-      // Set the provider for our contract
-      App.contracts.DotToken.setProvider(App.web3Provider);
-
-      // Use our contract to retrieve and mark the adopted pets
-      return App.getBalance();
-    });
-
-
     $.getJSON('RandomMembers.json', function(data) {
       // Get the necessary contract artifact file and instantiate it with truffle-contract
       var RandomMembersArtifact = data;
@@ -49,14 +36,60 @@ App = {
 
       // Use our contract to retrieve and mark the adopted pets
       return App.getName();
-    });
+    }).then( function() {
+      $.getJSON('DotToken.json', function(data) {
+        // Get the necessary contract artifact file and instantiate it with truffle-contract
+        var DotTokenArtifact = data;
+        App.contracts.DotToken = TruffleContract(DotTokenArtifact);
+
+        // Set the provider for our contract
+        App.contracts.DotToken.setProvider(App.web3Provider);
+
+        // Use our contract to retrieve and mark the adopted pets
+        return App.getBalance();
+      });
+    })  ;
 
 
     return App.bindEvents();
   },
 
   bindEvents: function() {
-    // $(document).on('click', '.btn-adopt', App.handleAdopt);
+    $(document).on('click', '.transfer-submit-btn', App.rewardOtherMember);
+    // $(document).on('click', '.voted-yes-btn', App.handleVotedYes);
+    // $(document).on('click', '.proposal-submit-btn', App.handleProposalSubmission);
+  },
+
+  handleProposalSubmission: function() {
+    var name = $('#proposal-name')[0].innerText;
+    var tokenNeeded = $('#token-needed')[0].innerText;
+    var voteProposalInstance;
+    App.contracts.VoteProposal.deployed().then(function(instance) {
+        voteProposalInstance = instance;
+        voteProposalInstance.propose(Number(tokenNeeded)).then(function(res) {
+            console.log(res);
+        }).catch(function(err){
+            console.log('voteProposalInstance.propose returned error: ' + JSON.stringify(err));
+        })
+    }).catch(function(err) {
+        console.log('VoteProposal deploy error: ' + err.message);
+  },
+  
+  rewardOtherMember: function() {
+    var address = document.getElementById('reward-address').value;
+    var tokens = document.getElementById('reward-tokens').value;
+    var reason = document.getElementById('reward-reason').value;
+    var dotTokenInstance;
+    App.contracts.DotToken.deployed().then(function(instance) {
+        dotTokenInstance = instance;
+        dotTokenInstance.rewardMember(address, tokens, reason).then(function(res) {
+            console.log(res);
+        }).catch(function(err){
+            console.log('dotTokenInstance.rewardMember returned error: ' + JSON.stringify(err));
+        })
+    }).catch(function(err) {
+        console.log('DotToken deploy error: ' + err.message);
+  });
   },
 
   getBalance: function() {
@@ -82,7 +115,7 @@ App = {
       return amount;
     }).then(function(amount) {
       console.log('got amount' + amount);
-      App.setTokenAmount(amount);
+      App.setTokenAmount(Number(amount));
     }).catch(function(err) {
       console.log(err.message);
     });
@@ -98,8 +131,6 @@ App = {
         account = accounts[0];
         console.log(accounts);
       });
-
-
     var randomMembersInstance;
 
 
@@ -126,24 +157,6 @@ App = {
 
   setMemberType: function(isBoard) {
     $('#member-type')[0].innerText = isBoard ? 'Board Member' : 'Member';
-  },
-  
-  rewardOtherMember: function() {
-    var address = document.getElementById('reward-address').value;
-    var tokens = document.getElementById('reward-tokens').value;
-    var reason = document.getElementById('reward-reason').value;
-
-    var dotTokenInstance;
-    App.contracts.DotToken.deployed().then(function(instance) {
-        dotTokenInstance = instance;
-        dotTokenInstance.rewardMember(address, tokens, reason).then(function(res) {
-            console.log(res);
-        }).catch(function(err){
-            console.log('dotTokenInstance.rewardMember returned error: ' + JSON.stringify(err));
-        })
-    }).catch(function(err) {
-        console.log('DotToken deploy error: ' + err.message);
-    });
   }
 };
 
