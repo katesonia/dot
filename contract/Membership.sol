@@ -10,8 +10,8 @@ contract Membership {
 		bool isBoardMember;
 	}
 
-	DotToken public tokenContract;
-    mapping(address => Member) memberInfo;
+    DotToken public tokenContract;
+    mapping(address => Member) public memberInfo;
     
     constructor(address tokenAddress) public {
         tokenContract = DotToken(tokenAddress);
@@ -24,7 +24,11 @@ contract Membership {
     
     
     function setMemberInfo(string name, bool isBoard) public {
-        memberInfo[msg.sender] = Member(msg.sender, name, isBoard);
+        Member storage member = memberInfo[msg.sender];
+        member.addr = msg.sender;
+        member.name = name;
+        member.isBoardMember = isBoard;
+        return;
     }
     
     function getMemberInfo(address addr) public view returns (address, string, bool) {
