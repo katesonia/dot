@@ -1,4 +1,5 @@
 pragma solidity ^0.4.18;
+pragma experimental ABIEncoderV2;
 
 import "./CommonStruct.sol";
 // ----------------------------------------------------------------------------
@@ -119,6 +120,10 @@ contract DotToken is ERC20Interface, Owned{
         accomplishments[to].push(CommonStruct.Accomplishment(to, tokens, _message));
         emit Transfer(msg.sender, to, tokens);
         return true;
+    }
+
+    function getAccomplishments(address member) public returns (CommonStruct.Accomplishment[] Accomplishment){
+        return accomplishments[member];
     }
 
 
