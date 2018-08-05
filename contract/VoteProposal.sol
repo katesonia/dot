@@ -17,16 +17,19 @@ contract VoteProposal {
         //string description;
         uint voteCount;
         uint proposedFund;
+        address initiator;
     }
 
     //address chairperson;
-    mapping(address => Voter) voters;
-    Proposal[] proposals;
+    mapping(address => Voter) public voters;
+    Proposal[] public proposals;
 
     /// Create a new ballot with $(_numProposals) different proposals.
-    constructor(address dotTokenAddr, uint8 _numProposals) public {
+    constructor(address dotTokenAddr, uint8[] proposalFunds, address[] initiators) public {
         dotTokenContract = DotToken(dotTokenAddr);
-        proposals.length = _numProposals;
+        for (uint8 i = 0; i < proposalFunds.length; i++) {
+            proposals.push(Proposal(0, proposalFunds[i], initiators[i]));
+        }
     }
 
     /// Give a single vote to proposal $(toProposal).
@@ -50,5 +53,11 @@ contract VoteProposal {
                 winningVoteCount = proposals[prop].voteCount;
                 _winningProposal = prop;
             }
+    }
+    
+    //Generate tokens and issue fund to winning proposal.
+    function issueFundToWinningProposal() public returns (bool) {
+        Proposal storage proposal = proposals[winningProposal()];
+        return dotTokenContract.generateTokens(proposal.initiator, proposal.proposedFund);
     }
 }
