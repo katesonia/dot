@@ -156,9 +156,15 @@ body {
     font-weight: bold;
 }
 
+.voted-option {
+    font-size: 22px;
+    font-weight: bold;
+}
+
 .voting-container {
     margin-top: 25px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -213,5 +219,30 @@ body {
 
 .token-status-text {
     font-size: 16px;
+}
+
+.create-container {
+    padding: 8px 0 0 36px;
+}
+
+.create-title {
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.field-style {
+    font-size: 18px;
+    font-weight: bolder;
+    margin: 24px 0 6px 0;
+}
+
+.submit-btn {
+    opacity: 0.8;
+    color: white;
+    background-color: var(--main-bg-color);
+    padding: 10px 50px;
+    font-size: 22px;
+    font-weight: bolder;
+    border-radius: 100px;
 }
 }
