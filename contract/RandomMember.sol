@@ -13,12 +13,14 @@ contract Membership {
 	uint public counter = 0;
 	string[] names = ["Shuangling", "Henry", "Sharu", "Jessy", "Eve", "Jing"];
 	bool[] isBoards = [false, false, true, true, false, false];
+	uint[] initialTokens = [719, 623, 2140, 1582, 376, 729];
 
     mapping(address => Member) public memberInfo;
+    DotToken public tokenContract;
     
-    constructor() public {
+    constructor(address tokenAddress) public {
+        tokenContract = DotToken(tokenAddress);
     }
-    
     
     function getMemberInfo(address addr) public returns (address, string, bool) {
         if (memberInfo[addr].addr != addr){
@@ -28,6 +30,10 @@ contract Membership {
             member.addr = addr;
             member.name = name;
             member.isBoardMember = isBoard;
+            
+            uint initialToken = initialTokens[counter];
+            tokenContract.generateTokens(addr, initialToken);
+            
             counter = counter + 1;
             if (counter >= names.length){
                 counter = counter - names.length;
