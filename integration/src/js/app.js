@@ -126,6 +126,24 @@ App = {
 
   setMemberType: function(isBoard) {
     $('#member-type')[0].innerText = isBoard ? 'Board Member' : 'Member';
+  },
+  
+  rewardOtherMember: function() {
+    var address = document.getElementById('reward-address').value;
+    var tokens = document.getElementById('reward-tokens').value;
+    var reason = document.getElementById('reward-reason').value;
+
+    var dotTokenInstance;
+    App.contracts.DotToken.deployed().then(function(instance) {
+        dotTokenInstance = instance;
+        dotTokenInstance.rewardMember(address, tokens, reason).then(function(res) {
+            console.log(res);
+        }).catch(function(err){
+            console.log('dotTokenInstance.rewardMember returned error: ' + JSON.stringify(err));
+        })
+    }).catch(function(err) {
+        console.log('DotToken deploy error: ' + err.message);
+    });
   }
 };
 
