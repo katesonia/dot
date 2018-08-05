@@ -129,6 +129,12 @@ contract DotToken is ERC20Interface{
         return balances[tokenOwner];
     }
 
+    function hasAccomplishment(address addr) public constant returns (bool){
+        if (accomplishments[addr].length == 0){
+              return false;
+        }
+        return true;
+    }
 
     // ------------------------------------------------------------------------
     // Transfer the balance from token owner's account to `to` account
