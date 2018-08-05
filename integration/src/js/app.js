@@ -5,8 +5,8 @@ App = {
   init: function() {
     console.log('init');
     $.getJSON('../members.json', function(data) {
-      // App.setTokenAmount(data.balance);
-      // App.setName(data.name);
+      App.setTokenAmount(data.balance);
+      App.setName(data.name);
     });
 
     return App.initWeb3();
@@ -110,7 +110,7 @@ App = {
     }).then(function(memberInfo) {
       console.log(memberInfo);
       App.setName(memberInfo[1]);
-      App.setIsBoard(memberInfo[2]);
+      App.setMemberType(memberInfo[2]);
     }).catch(function(err) {
       console.log(err.message);
     });
@@ -124,8 +124,8 @@ App = {
     $('#member-name')[0].innerText = name;
   },
 
-  setIsBoard: function(isBoard) {
-    $('#is-board')[0].innerText = isBoard;
+  setMemberType: function(isBoard) {
+    $('#member-type')[0].innerText = isBoard ? 'Board Member' : 'Member';
   }
 };
 
