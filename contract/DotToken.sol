@@ -1,5 +1,6 @@
 pragma solidity ^0.4.18;
 
+import "./CommonStruct.sol";
 // ----------------------------------------------------------------------------
 // DOT token contract
 //
@@ -13,6 +14,7 @@ pragma solidity ^0.4.18;
 // ----------------------------------------------------------------------------
 // Safe maths
 // ----------------------------------------------------------------------------
+
 library SafeMath {
     function add(uint a, uint b) internal pure returns (uint c) {
         c = a + b;
@@ -88,22 +90,15 @@ contract Owned {
 
 contract DotToken is ERC20Interface, Owned{
     using SafeMath for uint;
+    using CommonStruct for CommonStruct.Accomplishment;
 
     string public symbol;
     string public name;
     uint8 public decimals;
     uint public _totalSupply;
 
-    struct accomplishment {
-    	address member;
-    	uint token_rewarded;
-    	string message;
-    	// uint time_started;
-    	// uint time_ended;
-    }
-
-    mapping(address => uint) balances;
-    mapping(address => accomplishment[]) accomplishments;
+    mapping(address => uint) public balances;
+    mapping(address => CommonStruct.Accomplishment[]) public accomplishments;
 
     // ------------------------------------------------------------------------
     // Constructor
@@ -121,8 +116,7 @@ contract DotToken is ERC20Interface, Owned{
     function rewardMember(address to, uint tokens, string _message) public returns (bool success) {
         balances[msg.sender] = balances[msg.sender].sub(tokens);
         balances[to] = balances[to].add(tokens);
-        accomplishment memory newAccomplishment  = accomplishment(to, tokens, _message);
-        accomplishments[to].push(newAccomplishment);
+        accomplishments[to].push(CommonStruct.Accomplishment(to, tokens, _message));
         emit Transfer(msg.sender, to, tokens);
         return true;
     }
