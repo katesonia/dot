@@ -1,0 +1,225 @@
+{
+  "contractName": "CommonStruct",
+  "abi": [],
+  "bytecode": "0x604c602c600b82828239805160001a60731460008114601c57601e565bfe5b5030600052607381538281f30073000000000000000000000000000000000000000030146080604052600080fd00a165627a7a7230582068dc4a8a1bc9cbdc168a80a2b52676330a6cfde7d1f2663208fbacee437e419a0029",
+  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fd00a165627a7a7230582068dc4a8a1bc9cbdc168a80a2b52676330a6cfde7d1f2663208fbacee437e419a0029",
+  "sourceMap": "26:137:1:-;;132:2:-1;166:7;155:9;146:7;137:37;252:7;246:14;243:1;238:23;232:4;229:33;270:1;265:20;;;;222:63;;265:20;274:9;222:63;;298:9;295:1;288:20;328:4;319:7;311:22;352:7;343;336:24",
+  "deployedSourceMap": "26:137:1:-;;;;;;;;",
+  "source": "pragma solidity ^0.4.18;\n\nlibrary CommonStruct {\n    \n    struct Accomplishment {\n    \tuint tokenRewarded;\n    \tstring message;\n    \t//uint timestamp;\n    }\n    \n}",
+  "sourcePath": "/Users/shuangly/tutorials/integration/contracts/CommonStruct.sol",
+  "ast": {
+    "absolutePath": "/Users/shuangly/tutorials/integration/contracts/CommonStruct.sol",
+    "exportedSymbols": {
+      "CommonStruct": [
+        35
+      ]
+    },
+    "id": 36,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 29,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".18"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "library",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 35,
+        "linearizedBaseContracts": [
+          35
+        ],
+        "name": "CommonStruct",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "CommonStruct.Accomplishment",
+            "id": 34,
+            "members": [
+              {
+                "constant": false,
+                "id": 31,
+                "name": "tokenRewarded",
+                "nodeType": "VariableDeclaration",
+                "scope": 34,
+                "src": "87:18:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 30,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "87:4:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 33,
+                "name": "message",
+                "nodeType": "VariableDeclaration",
+                "scope": 34,
+                "src": "112:14:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 32,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "112:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Accomplishment",
+            "nodeType": "StructDefinition",
+            "scope": 35,
+            "src": "58:98:1",
+            "visibility": "public"
+          }
+        ],
+        "scope": 36,
+        "src": "26:137:1"
+      }
+    ],
+    "src": "0:163:1"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/shuangly/tutorials/integration/contracts/CommonStruct.sol",
+    "exportedSymbols": {
+      "CommonStruct": [
+        35
+      ]
+    },
+    "id": 36,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 29,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".18"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "library",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 35,
+        "linearizedBaseContracts": [
+          35
+        ],
+        "name": "CommonStruct",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "CommonStruct.Accomplishment",
+            "id": 34,
+            "members": [
+              {
+                "constant": false,
+                "id": 31,
+                "name": "tokenRewarded",
+                "nodeType": "VariableDeclaration",
+                "scope": 34,
+                "src": "87:18:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 30,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "87:4:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 33,
+                "name": "message",
+                "nodeType": "VariableDeclaration",
+                "scope": 34,
+                "src": "112:14:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 32,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "112:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Accomplishment",
+            "nodeType": "StructDefinition",
+            "scope": 35,
+            "src": "58:98:1",
+            "visibility": "public"
+          }
+        ],
+        "scope": 36,
+        "src": "26:137:1"
+      }
+    ],
+    "src": "0:163:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.1",
+  "updatedAt": "2018-08-05T10:01:53.577Z"
+}
