@@ -97,8 +97,8 @@ contract DotToken is ERC20Interface, Owned{
     uint8 public decimals;
     uint public _totalSupply;
 
-    mapping(address => uint) public balances;
-    mapping(address => CommonStruct.Accomplishment[]) public accomplishments;
+    mapping(address => uint) balances;
+    mapping(address => CommonStruct.Accomplishment[]) accomplishments;
 
     // ------------------------------------------------------------------------
     // Constructor
