@@ -18,6 +18,7 @@ contract VoteProposal {
         uint voteCount;
         uint proposedFund;
         address initiator;
+        bool fundIssued;
     }
 
     //address chairperson;
@@ -25,21 +26,26 @@ contract VoteProposal {
     Proposal[] public proposals;
 
     /// Create a new ballot with $(_numProposals) different proposals.
-    constructor(address dotTokenAddr, uint8[] proposalFunds, address[] initiators) public {
+    constructor(address dotTokenAddr) public {
         dotTokenContract = DotToken(dotTokenAddr);
-        for (uint8 i = 0; i < proposalFunds.length; i++) {
-            proposals.push(Proposal(0, proposalFunds[i], initiators[i]));
-        }
+    }
+
+    function propose(uint proposedFund) public returns (uint) {
+        proposals.push(Proposal(0, proposedFund, msg.sender, false));
+        return proposals.length;
     }
 
     /// Give a single vote to proposal $(toProposal).
     function vote(uint8 toProposal) public {
+        // There is no proposal to vote.
+        //require(proposals.length != 0);
+        
         Voter storage sender = voters[msg.sender];
         if (sender.voted || toProposal >= proposals.length) return;
         
         uint balance = dotTokenContract.balanceOf(msg.sender);
         //No right to vote if voter has no balance.
-        if (balance == 0) return;
+        //if (balance == 0) return;
         
         sender.voted = true;
         sender.vote = toProposal;
@@ -56,8 +62,11 @@ contract VoteProposal {
     }
     
     //Generate tokens and issue fund to winning proposal.
-    function issueFundToWinningProposal() public returns (bool) {
+    function issueFundToWinningProposal() public {
         Proposal storage proposal = proposals[winningProposal()];
-        return dotTokenContract.generateTokens(proposal.initiator, proposal.proposedFund);
+        if (proposal.fundIssued) return;
+        
+        dotTokenContract.generateTokens(proposal.initiator, proposal.proposedFund);
+        proposal.fundIssued = true;
     }
 }
