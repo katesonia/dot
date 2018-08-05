@@ -13,7 +13,7 @@
     <link href="css/mystyle.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <title>Hello, world!</title>
+    <title>Decentralized Organization Token</title>
   </head>
   <body>
 
@@ -21,7 +21,7 @@
       <div class="row">
         <div class="col-sm-3 left-container">
           <div>
-            <img class="img-profile-left" src="images/boy2.png">
+            <img class="img-profile-left" src="images/girl3.png">
             <div class="member-style">
               <div id="member-type"></div>
             </div>
@@ -36,16 +36,22 @@
           <ul class="nav nav-tabs nav-custom">
             <li class="active"><a data-toggle="tab" href="#projects">Projects</a></li>
             <li><a data-toggle="tab" href="#history">History</a></li>
+            <li><a data-toggle="tab" href="#create-proposal">+ Create Project</a></li>
+            <li><a data-toggle="tab" href="#transfer">Transfer</a></li>
           </ul>
 
           <div class="tab-content">
+
+
+
+
             <div id="projects" class="tab-pane fade in active">
               <div class="tab-container">
                 <!-- Project 1 -->
                 <div class="row row-container">
                   <div class="col-sm-2 row-container-profile-container">
                     <img class="img-profile" src="images/girl-crown.png">
-                    <div class="right-container-profile-name">Shuangling</div>
+                    <div class="right-container-profile-name">Jessy</div>
                   </div>
                   <div class="col-sm-10 proposal-container">
                     <div class="row">
@@ -60,9 +66,6 @@
                             </a>
                             <div class="collapse" id="collapseExample">
                                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
                             </div>
                           </div>
                         </div>
@@ -70,10 +73,13 @@
                       <div class="col-sm-2 proposal-date">7.30.2018</div>
                     </div>
                     <div class="voting-container">
-                      <div class="voted-yes">
-                        <i class="far fa-thumbs-up"></i> YOU VOTED YES
-                      </div>
+                      <div>
+                        <span class="voted-yes">
+                          <i class="far fa-thumbs-up"></i> YOU VOTED YES
+                        </span>
                       <img class="voting" src="images/voting.png">
+                      </div>
+                      <img class="voting" src="images/icon_Check.png">
                     </div>
                   </div>
                 </div>  
@@ -82,7 +88,7 @@
                 <div class="row row-container">
                   <div class="col-sm-2 row-container-profile-container">
                     <img class="img-profile" src="images/girl-crown.png">
-                    <div class="right-container-profile-name">Shuangling</div>
+                    <div class="right-container-profile-name">Jessy</div>
                   </div>
                   <div class="col-sm-10 proposal-container">
                     <div class="row">
@@ -97,25 +103,30 @@
                             </a>
                             <div class="collapse" id="collapseExample">
                                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div class="col-sm-2 proposal-date">7.30.2018</div>
+                      <div class="col-sm-2 proposal-date">6.28.2018</div>
                     </div>
                     <div class="voting-container">
-                      <div class="voted-yes">
-                        <i class="far fa-thumbs-up"></i> YOU VOTED YES
+                      <div class="voted-option">
+                        <button class="btn voted-option voted-yes-btn" type="button" id="vote-yes">
+                          <i class="far fa-thumbs-up"></i> YES
+                        </button>
+                        <button class="btn voted-option" type="button" id="vote-no">
+                          <i class="far fa-thumbs-down"></i> NO
+                        </button>
                       </div>
-                      <img class="voting" src="images/voting.png">
+                      <img class="voting" src="images/voting_2.png">
                     </div>
                   </div>
                 </div>  
               </div>
             </div>
+
+
+
             <div id="history" class="tab-pane fade">
               <div class="tab-container">
                 <!-- History 1 -->
@@ -160,24 +171,68 @@
                 </div>  
               </div>
             </div>
+
+
+            <div id="create-proposal" class="tab-pane fade">
+              <div class="tab-container">
+                <div class="row-container create-container">
+                      <form>
+                        <div class="form-group">
+                          <div class="create-title">Proposal Details</div>
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <label class="field-style" for="proposal-name">Name</label>
+                              <input class="form-control" id="proposal-name">
+                            </div>
+                            <div class="col-sm-6">
+                            <label class="field-style" for="token-needed">Token needed</label>
+                            <input class="form-control" id="token-needed">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="field-style"  for="proposal-description">Description</label>
+                          <textarea class="form-control" id="proposal-description" rows="3"></textarea>
+                        </div>
+                        <div style="display: flex; justify-content: flex-end;">
+                          <button type="submit" class="btn submit-btn proposal-submit-btn">Submit</button>
+                        </div>
+                      </form>
+                </div>
+              </div>
+            </div>
+
+            <div id="transfer" class="tab-pane fade">
+              <div class="tab-container">
+                <div class="row-container create-container">
+                      <form>
+                        <div class="form-group">
+                          <div class="create-title">Transfer Details</div>
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <label class="field-style" for="reward-address">Recipient Address</label>
+                              <input class="form-control" id="reward-address">
+                            </div>
+                            <div class="col-sm-6">
+                            <label class="field-style" for="reward-tokens">Amount</label>
+                            <input class="form-control" id="reward-tokens">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="field-style"  for="reward-reason">Reason</label>
+                          <textarea class="form-control" id="reward-reason" rows="3"></textarea>
+                        </div>
+                        <div style="display: flex; justify-content: flex-end;">
+                          <button type="submit" class="btn transfer-submit-btn submit-btn">Submit</button>
+                        </div>
+                      </form>
+                </div>
+              </div>
+            </div>
           </div>
 
         </div>
-      </div>
-      
-      <hr>
-      <div>
-        Reward other members with tokens!
-      </div>
-      <div>Reward member:
-        <textarea id="reward-address" rows="1" cols="50" placeholder="Enter member address here..."></textarea>
-      </div>
-      <div>Token amount:
-        <textarea id="reward-tokens" rows="1" cols="50" placeholder="Enter token amount here..."></textarea>
-      </div>
-      <div>Reward reason:
-        <textarea id="reward-reason" rows="1" cols="50" placeholder="Enter reward reason here..."></textarea>
-        <button id="send-reward" type="button" onclick="App.rewardOtherMember()">Send reward</button>
       </div>
 
 
@@ -191,7 +246,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
