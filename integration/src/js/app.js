@@ -73,6 +73,7 @@ App = {
         })
     }).catch(function(err) {
         console.log('VoteProposal deploy error: ' + err.message);
+   });
   },
   
   rewardOtherMember: function() {
