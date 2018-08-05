@@ -1,5 +1,4 @@
 pragma solidity ^0.4.18;
-pragma experimental ABIEncoderV2;
 
 import "./CommonStruct.sol";
 // ----------------------------------------------------------------------------
@@ -63,6 +62,7 @@ contract ApproveAndCallFallBack {
 // ----------------------------------------------------------------------------
 // Owned contract
 // ----------------------------------------------------------------------------
+/*
 contract Owned {
     address public owner;
     address public newOwner;
@@ -77,19 +77,10 @@ contract Owned {
         require(msg.sender == owner);
         _;
     }
-
-    function transferOwnership(address _newOwner) public onlyOwner {
-        newOwner = _newOwner;
-    }
-    function acceptOwnership() public {
-        require(msg.sender == newOwner);
-        emit OwnershipTransferred(owner, newOwner);
-        owner = newOwner;
-        newOwner = address(0);
-    }
 }
+*/
 
-contract DotToken is ERC20Interface, Owned{
+contract DotToken is ERC20Interface{
     using SafeMath for uint;
     using CommonStruct for CommonStruct.Accomplishment;
 
@@ -104,7 +95,7 @@ contract DotToken is ERC20Interface, Owned{
     // ------------------------------------------------------------------------
     // Constructor
     // ------------------------------------------------------------------------
-    constructor() public {
+    constructor() public payable{
         symbol = 'DOT';
         name = 'DOT Token';
     }
@@ -117,13 +108,9 @@ contract DotToken is ERC20Interface, Owned{
     function rewardMember(address to, uint tokens, string _message) public returns (bool success) {
         balances[msg.sender] = balances[msg.sender].sub(tokens);
         balances[to] = balances[to].add(tokens);
-        accomplishments[to].push(CommonStruct.Accomplishment(to, tokens, _message));
+        accomplishments[to].push(CommonStruct.Accomplishment(tokens, _message));
         emit Transfer(msg.sender, to, tokens);
         return true;
-    }
-
-    function getAccomplishments(address member) public returns (CommonStruct.Accomplishment[] Accomplishment){
-        return accomplishments[member];
     }
 
 
@@ -206,6 +193,7 @@ contract DotToken is ERC20Interface, Owned{
     // ------------------------------------------------------------------------
     // 1,000 Fun Tokens per 1 ETH
     // ------------------------------------------------------------------------
+    /*
     function buyTokens() public payable {
         uint tokens;
         balances[msg.sender] = balances[msg.sender].add(tokens);
@@ -213,20 +201,13 @@ contract DotToken is ERC20Interface, Owned{
         emit Transfer(address(0), msg.sender, tokens);
         owner.transfer(msg.value);
     }
+    */
 
-    // Fallback
+    // No ether for now.
     function () public payable {
-        buyTokens();
+        revert();
     }
-
-    // ------------------------------------------------------------------------
-    // Owner can transfer out any accidentally sent ERC20 tokens
-    // ------------------------------------------------------------------------
-    function transferAnyERC20Token(address tokenAddress, uint tokens) public onlyOwner returns (bool success) {
-        return ERC20Interface(tokenAddress).transfer(owner, tokens);
-    }
-
-    /*
+    
     ///////////
     // Generate and destory tokens
     ///////////
@@ -235,7 +216,7 @@ contract DotToken is ERC20Interface, Owned{
     // @param receiver address
     // @param amount the quantity of tokens generated
     // @return True if tokens are generated correctly
-    function generateTokens(address receiver, uint amount) public onlyOwner returns (bool) {
+    function generateTokens(address receiver, uint amount) public returns (bool) {
         _totalSupply.add(amount);
         balances[receiver] = balances[receiver].add(amount);
         emit Transfer(0, receiver, amount);
@@ -246,12 +227,12 @@ contract DotToken is ERC20Interface, Owned{
     // @param owner the address that will lose tokens
     // @param amount the quantity of tokens to burn
     // @return True if tokens are burned correctly
-    function destroyTokens(address owner, uint amount) public onlyOwner returns (bool) {
+    function destroyTokens(address owner, uint amount) public returns (bool) {
         require(balances[owner] >= amount);
         _totalSupply.sub(amount);
         balances[owner] = balances[owner].sub(amount);
         emit Transfer(owner, 0, amount);
         return true;
     }
-    */
+    
 }
